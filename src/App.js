@@ -7,11 +7,11 @@ function App() {
   const [categories,setCategories]=useState('');
   const [price,setPrice]=useState(0);
   useEffect(()=>{
-    axios.get('http://localhost:3700/api/product/myproduct')
+    axios.get('https://goldfish-app-r2ouy.ondigitalocean.app/api/product/myproduct')
     .then((res)=>{setData(res.data);
       console.log("response from api",res.data);})
     .catch((error)=>{console.log("error while fetching data",error)})
-  })
+  },[])
   const handleNameChange=(event)=>{
     setName(event.target.value);
   }
@@ -28,21 +28,21 @@ function App() {
       price:price,
       categories:categories
     }
-    axios.post('http://localhost:3700/api/product/addproduct',datacombine)
+    axios.post('https://goldfish-app-r2ouy.ondigitalocean.app/api/product/addproduct',datacombine)
     .then((res)=>{console.log('data send to exprees successfullu')})
     .catch(()=>{console.log('error while sending data to express');});
   }
   return (
     <div className="App">
         <p>this is front end page </p>
-        <div>
-          {/* {data.map((subdata)=>{
+        <div style={{alignItems:''}}>
+          {data.map((subdata)=>{
             return <div>
               <h1>{subdata.name}</h1>
               <h2>{subdata.categories}</h2>
               <h3>{subdata.price}</h3>
             </div>
-          })} */}
+          })}
         </div>
         <div>
           <form onSubmit={handleSubmit}>
